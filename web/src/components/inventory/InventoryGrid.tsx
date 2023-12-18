@@ -8,7 +8,7 @@ import { useIntersection } from '../../hooks/useIntersection';
 
 const PAGE_SIZE = 30;
 
-const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
+const InventoryGrid: React.FC<{ inventory: Inventory, direction: 'left' | 'right' }> = ({ inventory, direction }) => {
   const weight = React.useMemo(
     () => (inventory.maxWeight !== undefined ? Math.floor(getTotalWeight(inventory.items) * 1000) / 1000 : 0),
     [inventory.maxWeight, inventory.items]
@@ -31,23 +31,25 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
             <p>{inventory.label}</p>
             {inventory.maxWeight && (
               <p>
-                {weight / 1000}/{inventory.maxWeight / 1000}kg
+                {weight / 100}/{inventory.maxWeight / 100}
               </p>
             )}
           </div>
           <WeightBar percent={inventory.maxWeight ? (weight / inventory.maxWeight) * 100 : 0} />
         </div>
-        <div className="inventory-grid-container" ref={containerRef}>
+        <div className={direction === 'left' ? 'inventory-grid-container' : 'inventory-grid-container-right'} ref={containerRef}>
           <>
             {inventory.items.slice(0, (page + 1) * PAGE_SIZE).map((item, index) => (
-              <InventorySlot
-                key={`${inventory.type}-${inventory.id}-${item.slot}`}
-                item={item}
-                ref={index === (page + 1) * PAGE_SIZE - 1 ? ref : null}
-                inventoryType={inventory.type}
-                inventoryGroups={inventory.groups}
-                inventoryId={inventory.id}
-              />
+              index < 5 && inventory.type === 'player'
+                ? ''
+                : <InventorySlot
+                  key={`${inventory.type}-${inventory.id}-${item.slot}`}
+                  item={item}
+                  ref={index === (page + 1) * PAGE_SIZE - 1 ? ref : null}
+                  inventoryType={inventory.type}
+                  inventoryGroups={inventory.groups}
+                  inventoryId={inventory.id}
+                />
             ))}
           </>
         </div>
