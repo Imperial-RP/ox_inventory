@@ -37,14 +37,10 @@ const SlotTooltip: React.ForwardRefRenderFunction<
             <aside>
               {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}&nbsp;&nbsp;
               {item.weight > 0
-                ? item.weight >= 1000
-                  ? `${(item.weight / 1000).toLocaleString('en-us', {
-                    minimumFractionDigits: 2,
-                  })}Kg `
-                  : `${item.weight.toLocaleString('en-us', {
-                    minimumFractionDigits: 0,
-                  })}g `
-                : '0g'}
+                ? `${(item.weight / 1000).toLocaleString('en-us', {
+                  minimumFractionDigits: 2,
+                })} `
+                : '0 '}
             </aside>
           </div>
           <Divider />
@@ -56,14 +52,10 @@ const SlotTooltip: React.ForwardRefRenderFunction<
             <aside>
               {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}&nbsp;&nbsp;
               {item.weight > 0
-                ? item.weight >= 1000
-                  ? `${(item.weight / 1000).toLocaleString('en-us', {
-                    minimumFractionDigits: 2,
-                  })}Kg `
-                  : `${item.weight.toLocaleString('en-us', {
-                    minimumFractionDigits: 0,
-                  })}g `
-                : '0g'}
+                ? `${(item.weight / 1000).toLocaleString('en-us', {
+                  minimumFractionDigits: 2,
+                })} `
+                : '0 '}
             </aside>
             {inventoryType === 'crafting' ? (
               <div className="tooltip-crafting-duration">

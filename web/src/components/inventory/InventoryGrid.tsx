@@ -89,7 +89,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory }> = ({ inventory }) => {
             &nbsp;
             {inventory.maxWeight && (
               <p>
-                {weight / 1000}/{inventory.maxWeight / 1000}Kg{' '}
+                {weight / 1000}/{inventory.maxWeight / 1000}{' '}
                 <WeightBar percent={inventory.maxWeight ? (weight / inventory.maxWeight) * 100 : 0} strokesize={16} />
               </p>
             )}
