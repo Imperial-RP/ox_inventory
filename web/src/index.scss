@@ -345,6 +345,16 @@ button:active {
     margin-left: 1vw;
     font-size: 1vw;
   }
+  .fa-solid {
+    font-size: 0.7vw;
+    margin-right: 0.25rem;
+    transform: translateY(0.28rem);
+  }
+}
+
+.inventory-slot-label-text.weight {
+  position: absolute;
+  bottom: 0.8vw;
 }
 
 .inventory-slot-number {

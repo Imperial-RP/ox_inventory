@@ -213,6 +213,14 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
                   {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}
                 </div>
               )}
+              <div className="inventory-slot-label-text weight">
+                <i className="fa-solid fa-weight-hanging"></i>
+                {item.weight > 0
+                  ? `${(item.weight / 1000).toLocaleString('en-us', {
+                    minimumFractionDigits: 2,
+                  })} `
+                  : '0 '}
+              </div>
             </div>
           </div>
         </div>
