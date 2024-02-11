@@ -44,13 +44,13 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
       item: () =>
         isSlotWithItem(item, inventoryType !== InventoryType.SHOP)
           ? {
-              inventory: inventoryType,
-              item: {
-                name: item.name,
-                slot: item.slot,
-              },
-              image: item?.name && `url(${getItemUrl(item) || 'none'}`,
-            }
+            inventory: inventoryType,
+            item: {
+              name: item.name,
+              slot: item.slot,
+            },
+            image: item?.name && `url(${getItemUrl(item) || 'none'}`,
+          }
           : null,
       canDrag,
     }),
@@ -109,7 +109,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     dispatch(closeTooltip());
-    if (timerRef.current) clearTimeout(timerRef.current);
+    if (timerRef.current) clearTimeout(timerRef.current as any);
     if (event.ctrlKey && isSlotWithItem(item) && inventoryType !== 'shop' && inventoryType !== 'crafting') {
       onDrop({ item: item, inventory: inventoryType });
     } else if (event.altKey && isSlotWithItem(item) && inventoryType === 'player') {
@@ -133,6 +133,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
         opacity: isDragging ? 0.4 : 1.0,
         backgroundImage: `url(${item?.name ? getItemUrl(item as SlotWithItem) : 'none'}`,
         border: isOver ? '1px dashed rgba(255,255,255,0.4)' : '',
+        
       }}
     >
       {isSlotWithItem(item) && (
@@ -146,9 +147,12 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
           onMouseLeave={() => {
             dispatch(closeTooltip());
             if (timerRef.current) {
-              clearTimeout(timerRef.current);
+              clearTimeout(timerRef.current as any);
               timerRef.current = null;
             }
+          }}
+          style={{
+            backgroundColor: `${item?.durability == 0 ? 'rgba(255, 0, 0, 0.1)' : ''}`
           }}
         >
           <div
@@ -158,24 +162,14 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
           >
             {inventoryType === 'player' && item.slot <= 5 && <div className="inventory-slot-number">{item.slot}</div>}
             <div className="item-slot-info-wrapper">
-              <p>
-                {item.weight > 0
-                  ? item.weight >= 1000
-                    ? `${(item.weight / 1000).toLocaleString('en-us', {
-                        minimumFractionDigits: 2,
-                      })}kg `
-                    : `${item.weight.toLocaleString('en-us', {
-                        minimumFractionDigits: 0,
-                      })}g `
-                  : ''}
-              </p>
-              <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'end' }}>
+                {inventoryType !== 'shop' && item?.durability !== undefined && (
+                  <WeightBar percent={item?.durability} durability strokesize={20} />
+                )}
+              </div>
             </div>
           </div>
           <div>
-            {inventoryType !== 'shop' && item?.durability !== undefined && (
-              <WeightBar percent={item.durability} durability />
-            )}
             {inventoryType === 'shop' && item?.price !== undefined && (
               <>
                 {item?.currency !== 'money' && item.currency !== 'black_money' && item.price > 0 && item.currency ? (
@@ -200,7 +194,7 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
                         className="item-slot-price-wrapper"
                         style={{ color: item.currency === 'money' || !item.currency ? '#2ECC71' : '#E74C3C' }}
                       >
-                        <p>
+                        <p style={{position:'absolute', marginTop:'0.2vw'}}>
                           {Locale.$ || '$'}
                           {item.price.toLocaleString('en-us')}
                         </p>

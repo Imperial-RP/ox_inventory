@@ -13,18 +13,20 @@
     "@vitejs/plugin-react": "^3.0.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
+    "react-circular-progressbar": "^2.1.0",
     "react-dnd": "^16.0.1",
     "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.4",
     "react-redux": "^8.0.5",
+    "react-tooltip": "^5.25.2",
     "react-transition-group": "^4.4.5",
     "redux": "^4.2.0",
     "sass": "^1.56.2"
   },
   "scripts": {
-    "start": "vite",
-    "watch": "vite build --watch",
+    "dev": "vite",
+    "game": "vite build --watch",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write \"./src/**/*.{ts,tsx,css}\""

@@ -13,6 +13,7 @@ import { closeTooltip } from '../../store/tooltip';
 import InventoryContext from './InventoryContext';
 import { closeContextMenu } from '../../store/contextMenu';
 import Fade from '../utils/transitions/Fade';
+import BodyDamege from './BodyDamge';
 
 const Inventory: React.FC = () => {
   const [inventoryVisible, setInventoryVisible] = React.useState(false);
@@ -49,8 +50,10 @@ const Inventory: React.FC = () => {
           <RightInventory />
           <Tooltip />
           <InventoryContext />
+          <BodyDamege />
         </div>
       </Fade>
+      
       <InventoryHotbar />
     </>
   );

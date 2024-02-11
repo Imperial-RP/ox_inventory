@@ -25,6 +25,7 @@ const InventoryHotbar: React.FC = () => {
   });
 
   return (
+    // <SlideUp in={hotbarVisible}>
     <SlideUp in={hotbarVisible}>
       <div className="hotbar-container">
         {items.map((item) => (
@@ -36,29 +37,21 @@ const InventoryHotbar: React.FC = () => {
             key={`hotbar-${item.slot}`}
           >
             {isSlotWithItem(item) && (
-              <div className="item-slot-wrapper">
+              <div style={{
+                backgroundColor: `${item?.durability == 0 ? 'rgba(255, 0, 0, 0.1)' : ''}`
+              }} className="item-slot-wrapper">
                 <div className="hotbar-slot-header-wrapper">
                   <div className="inventory-slot-number">{item.slot}</div>
                   <div className="item-slot-info-wrapper">
-                    <p>
-                      {item.weight > 0
-                        ? item.weight >= 1000
-                          ? `${(item.weight / 1000).toLocaleString('en-us', {
-                              minimumFractionDigits: 2,
-                            })}kg `
-                          : `${item.weight.toLocaleString('en-us', {
-                              minimumFractionDigits: 0,
-                            })}g `
-                        : ''}
-                    </p>
-                    <p>{item.count ? item.count.toLocaleString('en-us') + `x` : ''}</p>
+                    {item?.durability !== undefined && <WeightBar percent={item?.durability} durability strokesize={20} />}
                   </div>
                 </div>
                 <div>
-                  {item?.durability !== undefined && <WeightBar percent={item.durability} durability />}
+                  
                   <div className="inventory-slot-label-box">
                     <div className="inventory-slot-label-text">
                       {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
+                      <div className='Xndsu'>{typeof item.count === 'undefined' ? '0x' : item.count + 'x'}</div>
                     </div>
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import { Items } from './store/items';
 import { Locale } from './store/locale';
 import { setImagePath } from './store/imagepath';
 import { setupInventory } from './store/inventory';
+import { setDamage } from './store/damage';
 import { Inventory } from './typings';
 import { useAppDispatch } from './store';
 import { debugData } from './utils/debugData';
@@ -20,7 +21,7 @@ debugData([
         id: 'test',
         type: 'player',
         slots: 50,
-        label: 'Bob Smith',
+        label: 'Kishan Sharma',
         weight: 3000,
         maxWeight: 5000,
         items: [
@@ -37,8 +38,8 @@ debugData([
             },
             count: 5,
           },
-          { slot: 2, name: 'powersaw', weight: 0, count: 1, metadata: { durability: 75 } },
-          { slot: 3, name: 'copper', weight: 100, count: 12, metadata: { type: 'Special' } },
+          { slot: 2, name: 'powersaw', weight: 0, count: 1, metadata: { durability: 30 } },
+          { slot: 3, name: 'copper', weight: 100, count: 12, metadata: { durability: 70, type: 'Special' } },
           {
             slot: 4,
             name: 'water',
@@ -46,7 +47,7 @@ debugData([
             count: 1,
             metadata: { description: 'Generic item description' },
           },
-          { slot: 5, name: 'water', weight: 100, count: 1 },
+          { slot: 5, name: 'water', weight: 100, count: 1, metadata: { durability: 0 } },
           {
             slot: 6,
             name: 'backwoods',
@@ -61,7 +62,7 @@ debugData([
       },
       rightInventory: {
         id: 'shop',
-        type: 'crafting',
+        type: 'shop',
         slots: 5000,
         label: 'Bob Smith',
         weight: 3000,
@@ -109,6 +110,9 @@ const App: React.FC = () => {
   useNuiEvent('closeInventory', () => {
     manager.dispatch({ type: 'dnd-core/END_DRAG' });
   });
+  useNuiEvent('DamageCall', (data: any) => {
+    dispatch(setDamage(data))
+  })
 
   return (
     <div className="app-wrapper">
@@ -119,7 +123,7 @@ const App: React.FC = () => {
   );
 };
 
-addEventListener("dragstart", function(event) {
+addEventListener("dragstart", function (event) {
   event.preventDefault()
 })
 

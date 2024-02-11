@@ -1,22 +1,21 @@
 $mainColor: #22232c;
 $textColor: #c1c2c5;
-$mainFont: Roboto;
+$mainFont: 'Smooch Sans';
 
-$secondaryColor: rgba(12, 12, 12, 0.4);
+$secondaryColor: rgba(9, 9, 9, 0.226);
 $secondaryColorHighlight: #33343F;
 $secondaryColorLight: rgba(0, 0, 0, 0.5);
 $secondaryColorDark: rgba(12, 12, 12, 0.8);
 
 $gridCols: 5;
-$gridRows: 5;
-$gridSize: 10.2vh;
-$gridGap: 2px;
+$gridRows: 4;
+$gridSize: 11.2vh;
+$gridGap: 0.166vw;
 $containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Smooch Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100vh;
@@ -57,40 +56,48 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 .context-menu-list {
-  min-width: 200px;
-  background-color: $mainColor;
+  min-width: 5.208vw;
+  background-color: rgba(15, 7, 39);
   color: $textColor;
-  padding: 4px;
+  padding: 0.208vw;
   border-color: rgba(0, 0, 0, 0.2);
   border-style: inset;
-  border-width: 1px;
-  border-radius: 4px;
+  border-width: 0.052vw;
+  border-radius: 0.208vw;
   outline: none;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .context-menu-item  {
-  padding: 8px;
-  border-radius: 4px;
+  padding: 0.417vw;
+  border-radius: 0.208vw;
   background-color: transparent;
   outline: none;
   border: none;
-  color: $textColor;
+  font-family: 'Smooch Sans', sans-serif;
+  font-size: 1vw;
+  color: white;
+  opacity: 0.9;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 500;
+  transition: all 50ms ease-in-out;
   &:active {
     transform: none;
   }
   &:hover {
-    background-color: $secondaryColorHighlight;
+    transition: all 50ms ease-in-out;
     cursor: pointer;
+    transform: scale(1.1);
+    align-items: center;
   }
 }
 
 .tooltip-description {
-  padding-top: 5px;
+  padding-top: 0.260vw;
 }
 
 .tooltip-markdown > p {
@@ -98,7 +105,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 button:active {
-  transform: translateY(3px);
+  transform: translateY(0.156vw);
 }
 
 .item-drag-preview {
@@ -121,43 +128,47 @@ button:active {
   justify-content: center;
   align-items: center;
   height: 100%;
-
-  gap: 20px;
+  background-image: linear-gradient(132deg, rgba(15, 13, 59, 0.72) 0%, rgba(15,13,59,0.12172619047619047) 50%, rgba(15,13,59,0.72) 100%);
+  gap: 1.742vw;
 }
 
 .inventory-control {
   display: flex;
 
   .inventory-control-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     justify-content: center;
     align-items: center;
+    top: 21vh;
+    left: 10vw;
   }
 
   .inventory-control-input {
     transition: 200ms;
-    padding: 16px 8px;
-    border-radius: 2.5%;
+    padding: 0.533vw;
+    width: 1.5vw;
+    border-radius: 0.5vw;
+    position: absolute;
     font-family: $mainFont;
-    font-size: 16px;
+    font-size: 0.933vw;
     text-align: center;
     outline: none;
     border: none;
     color: #fff;
     background-color: $secondaryColor;
-    &:focus-within {
+    &:hover {
       background-color: $secondaryColorDark;
     }
   }
 
   .inventory-control-button {
-    font-size: 14px;
+    font-size: 0.729vw;
     color: #fff;
     background-color: $secondaryColor;
     transition: 200ms;
-    padding: 12px 8px;
+    padding: 0.625vw 0.417vw;
     border-radius: 2.5%;
     border: none;
     text-transform: uppercase;
@@ -177,12 +188,12 @@ button:active {
   left: 50%;
   transform: translate(-50%, -50%);
   color: $textColor;
-  width: 450px;
+  width: 23.438vw;
   display: flex;
   flex-direction: column;
-  padding: 16px;
-  border-radius: 4px;
-  gap: 16px;
+  padding: 0.833vw;
+  border-radius: 0.208vw;
+  gap: 0.833vw;
 }
 
 .useful-controls-dialog-overlay {
@@ -194,17 +205,17 @@ button:active {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  font-size: 18px;
+  font-size: 0.938vw;
 }
 
 .useful-controls-dialog-close {
-  width: 25px;
-  height: 25px;
-  padding: 6px;
+  width: 20.260vw;
+  height: 20.260vw;
+  padding: 0.313vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 0.208vw;
   fill: $textColor;
   &:hover {
     background-color: $secondaryColorHighlight;
@@ -215,24 +226,24 @@ button:active {
 .useful-controls-content-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.042vw;
 }
 
 .divider {
   width: 100%;
-  height: 1px;
+  height: 0.052vw;
   background-color: rgba(255, 255, 255, 0.12);
 }
 
 .useful-controls-button {
   position: absolute !important;
-  bottom: 25px;
-  right: 25px;
+  bottom: 20.260vw;
+  right: 20.260vw;
   transition: 200ms !important;
   border: none;
   color: white;
-  width: 52px;
-  height: 52px;
+  width: 2.708vw;
+  height: 2.708vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -247,8 +258,8 @@ button:active {
 
 .useful-controls-exit-button {
   position: absolute !important;
-  right: 8px;
-  top: 8px;
+  right: 0.417vw;
+  top: 0.417vw;
   border-radius: 2.5% !important;
   color: grey !important;
 }
@@ -261,13 +272,19 @@ button:active {
   display: flex;
   flex-direction: column;
   gap: calc($gridGap * 2);
+  margin-right: -10vw;
+  margin-left: 10vw;
 }
 .inventory-grid-header-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   p {
-    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.3vw;
+    font-weight: 500;
   }
 }
 
@@ -279,31 +296,33 @@ button:active {
   gap: $gridGap;
   overflow-y: scroll;
 }
+.inventory-grid-container2 {
+  display: grid;
+  height: 10vw;
+  grid-template-columns: repeat($gridCols, $gridSize);
+  grid-auto-rows: $gridSize + 0.22vh;
+  gap: $gridGap;
+  overflow-y: hidden;
+}
 
 // inventory slots
 .inventory-slot {
   background-color: $secondaryColor;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 2.5%;
+  border-radius: 0.5vh;
   image-rendering: -webkit-optimize-contrast;
   position: relative;
   background-size: 7vh;
-  color: $textColor;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-style: inset;
-  border-width: 1px;
+  color: #fff;
+  border: 0.052vw solid #ffffff17;
 }
 
 .inventory-slot-label-box {
-  background-color: $mainColor;
-  color: $textColor;
+  color: #fff;
   text-align: center;
   border-bottom-left-radius: 0.25vh;
   border-bottom-right-radius: 0.25vh;
-  border-top-color: rgba(0, 0, 0, 0.2);
-  border-top-style: inset;
-  border-top-width: 1px;
 }
 
 .inventory-slot-label-text {
@@ -311,21 +330,34 @@ button:active {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 2px 3px;
-  font-weight: 400;
-  font-family: $mainFont;
-  font-size: 12px;
+  padding: 0.104vw 0.156vw;
+  font-weight: 500;
+  text-align: left;
+  font-size: 0.9vw;
+  text-shadow: 0.052vw 0.104vw 0.521vw #ffffff4d,-0.104vw 0.052vw 0.521vw #ffffff37;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .Xndsu {
+    margin-left: 1vw;
+    font-size: 1vw;
+  }
 }
 
 .inventory-slot-number {
-  background-color: white;
-  color: black;
-  height: 12px;
+  color: rgb(255, 255, 255);
+  height: 1.4vw;
+  width: 1.4vw;
+  text-align: center;
   border-top-left-radius: 0.25vh;
   border-bottom-right-radius: 0.25vh;
-  padding: 3px;
-  font-size: 12px;
-  font-family: $mainFont;
+  margin-left: 0.2vw;
+  margin-top: 0.2vw;
+  font-size: 1.198vw;
+  background-color: rgba(15, 7, 39, 0.816);
+  border-radius: 100vw;
+  font-weight: 600;
 }
 
 .item-slot-wrapper {
@@ -334,7 +366,7 @@ button:active {
   justify-content: space-between;
   height: 100%;
   p {
-    font-size: 12px;
+    font-size: 0.625vw;
   }
 }
 
@@ -342,22 +374,19 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  font-weight: 600 ;
+  opacity: 0.8;
 }
 
 .item-hotslot-header-wrapper {
   @extend .item-slot-header-wrapper;
   justify-content: space-between !important;
 }
-
 .item-slot-info-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-self: flex-end;
-  padding: 3px;
-  gap: 3px;
-  p {
-    font-size: 12px;
-  }
+  text-align: center;
+  position: relative;
+  right: 0.3vw;
+  margin-top: 0.2vw;
 }
 
 .item-slot-currency-wrapper {
@@ -365,9 +394,9 @@ button:active {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 3px;
+  padding-right: 0.156vw;
   p {
-    font-size: 14px;
+    font-size: 0.729vw;
     text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
@@ -376,9 +405,9 @@ button:active {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  padding-right: 3px;
+  padding-right: 0.156vw;
   p {
-    font-size: 14px;
+    font-size: 0.729vw;
     text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
@@ -387,20 +416,20 @@ button:active {
 .tooltip-wrapper {
   pointer-events: none;
   display: flex;
-  background-color: $mainColor;
-  width: 200px;
-  padding: 8px;
+  background-color: rgba(15, 7, 39, 0.716);
+  width: 13.021vw;
+  padding: 0.417vw;
   flex-direction: column;
-  min-width: 200px;
+  min-width: 10.417vw;
   color: $textColor;
-  font-family: $mainFont;
-  border-radius: 4px;
-  border-color: rgba(0, 0, 0, 0.2);
+  
+  border-radius: 0.208vw;
+  border-color: rgba(255,255,255, 0.2);
   border-style: inset;
-  border-width: 1px;
+  border-width: 0.052vw;
   p {
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 1.042vw;
+    font-weight: 300;
   }
 }
 
@@ -410,8 +439,13 @@ button:active {
   justify-content: space-between;
   align-items: center;
   p {
-    font-size: 15px;
+    font-size: 1.042vw;
     font-weight: 400;
+  }
+  aside{
+    margin-left: 6.688vw;
+    font-size: 1.042vw;
+    font-weight: 500;
   }
 }
 
@@ -421,15 +455,15 @@ button:active {
   align-items: center;
   justify-content: center;
   svg {
-    padding-right: 3px;
+    padding-right: 0.156vw;
   }
   p {
-    font-size: 14px;
+    font-size: 0.729vw;
   }
 }
 
 .tooltip-ingredients {
-  padding-top: 5px;
+  padding-top: 0.260vw;
 }
 
 .tooltip-ingredient {
@@ -437,9 +471,9 @@ button:active {
   flex-direction: row;
   align-items: center;
   img {
-    width: 28px;
-    height: 28px;
-    padding-right: 5px;
+    width: 1.458vw;
+    height: 1.458vw;
+    padding-right: 0.260vw;
   }
 }
 
@@ -447,11 +481,11 @@ button:active {
 .hotbar-container {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 0.304vw;
   justify-content: center;
   width: 100%;
   position: absolute;
-  bottom: 2vh;
+  bottom: 1vh;
 }
 
 .hotbar-item-slot {
@@ -472,7 +506,7 @@ button:active {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  gap: 2px;
+  gap: 0.104vw;
   position: absolute;
   bottom: 20vh;
   left: 50%;
@@ -491,9 +525,9 @@ button:active {
   border-top-right-radius: 0.25vh;
   font-family: $mainFont;
   p {
-    font-size: 11px;
-    padding: 2px;
-    font-weight: 600;
+    font-size: 0.7vw;
+    padding: 0.104vw;
+    font-weight: 500;
   }
 }
 
@@ -504,16 +538,15 @@ button:active {
 }
 
 .durability-bar {
-  background: rgba(0, 0, 0, 0.5);
-  height: 3px;
+  height: 2.4vh;
   overflow: hidden;
 }
 
 .weight-bar {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px inset rgba(0, 0, 0, 0.1);
-  height: 0.8vh;
-  border-radius: 5%;
+  
+  height: 3.5vh;
+  margin-top: -0.5vh;
+  margin-left: 0.2vh;
   overflow: hidden;
 }
 
@@ -536,19 +569,112 @@ button:active {
 }
 
 .transition-slide-up-enter {
-  transform: translateY(200px)
+  transform: translateY(10.417vw)
 }
 
 .transition-slide-up-enter-active {
-  transform: translateY(0px);
+  transform: translateY(0vw);
   transition: all 200ms;
 }
 
 .transition-slide-up-exit {
-  transform: translateY(0px);
+  transform: translateY(0vw);
 }
 
 .transition-slide-up-exit-active {
-  transform: translateY(200px);
+  transform: translateY(10.417vw);
   transition: all 200ms;
+}
+.group .overlap-group {
+  height: 36vw;
+  width: 27vw;
+  position: relative;
+}
+
+.group .UPPERBODY {
+  height: 36.9169vw;
+  left: 2.6vw;
+  object-fit: cover;
+  position: absolute;
+  top: 1.03vw;
+  width: 20.5vw;
+}
+
+.group .img {
+  height: 38.23045vw;
+  left: 2.8125vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.2032vw;
+  width: 20.07625vw;
+}
+
+.group .LLEG {
+  height: 38.23045vw;
+  object-fit: cover;
+  position: absolute;
+  left: 2.953125vw;
+  top: 0.2703125vw;
+  width: 20.07625vw;
+}
+
+.group .RLEG {
+  height: 38.23045vw;
+  left: 2.7890625vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.2703125vw;
+  width: 20.07625vw;
+}
+
+.group .LARM {
+  height: 38.23045vw;
+  left: 2.8125vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.2375vw;
+  width: 20.07625vw;
+}
+
+.group .neck {
+  height: 38.23045vw;
+  left: 5.5vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.303125vw;
+  width: 20.07625vw;
+}
+
+.group .img-2 {
+  top: 0.394vw;
+  left: 3.15vw;
+  position: absolute;
+  width: 19.41625vw;
+  height: 38.23045vw;
+}
+
+.group .img-3 {
+  top: 0.4vw;
+  left: 3.2vw;
+  position: absolute;
+  width: 19.41625vw;
+  height: 38.23045vw;
+}
+
+.group .head {
+  height: 38.23045vw;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0.135625vw;
+  width: 20.07625vw;
+}
+
+.group .RARM {
+  height: 38.9169vw;
+  left: 2.5462vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.007vw;
+  width: 20.5417vw;
 }

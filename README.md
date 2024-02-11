@@ -1,6 +1,8 @@
-# ox_inventory
+# ox_inventory customized by Bro Code
 
 A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
+
+This is an updated version of the [`TeamBroCode/ox_inventory-brocode`](https://github.com/TeamBroCode/ox_inventory-brocode) fork.
 
 ![](https://img.shields.io/github/downloads/overextended/ox_inventory/total?logo=github)
 ![](https://img.shields.io/github/downloads/overextended/ox_inventory/latest/total?logo=github)

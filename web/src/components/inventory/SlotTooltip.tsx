@@ -20,20 +20,51 @@ const SlotTooltip: React.ForwardRefRenderFunction<
   }, [item]);
   const description = item.metadata?.description || itemData?.description;
   const ammoName = itemData?.ammoName && Items[itemData?.ammoName]?.label;
-
+  function ConvertToCamel(strr: any) {
+    const str = strr;
+    const camelCase = str
+      .split(' ')
+      .map((word: any) => word[0]?.toUpperCase() + word.slice(1))
+      .join(' ');
+    return camelCase;
+  }
   return (
     <>
       {!itemData ? (
         <div className="tooltip-wrapper" ref={ref} style={style}>
           <div className="tooltip-header-wrapper">
-            <p>{item.name}</p>
+            <p>{ConvertToCamel(item.name)}</p>
+            <aside>
+              {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}&nbsp;&nbsp;
+              {item.weight > 0
+                ? item.weight >= 1000
+                  ? `${(item.weight / 1000).toLocaleString('en-us', {
+                    minimumFractionDigits: 2,
+                  })}Kg `
+                  : `${item.weight.toLocaleString('en-us', {
+                    minimumFractionDigits: 0,
+                  })}g `
+                : '0g'}
+            </aside>
           </div>
           <Divider />
         </div>
       ) : (
         <div style={{ ...style }} className="tooltip-wrapper" ref={ref}>
           <div className="tooltip-header-wrapper">
-            <p>{item.metadata?.label || itemData.label || item.name}</p>
+            <p>{ConvertToCamel(item.metadata?.label || itemData.label || item.name)}</p>
+            <aside>
+              {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}&nbsp;&nbsp;
+              {item.weight > 0
+                ? item.weight >= 1000
+                  ? `${(item.weight / 1000).toLocaleString('en-us', {
+                    minimumFractionDigits: 2,
+                  })}Kg `
+                  : `${item.weight.toLocaleString('en-us', {
+                    minimumFractionDigits: 0,
+                  })}g `
+                : '0g'}
+            </aside>
             {inventoryType === 'crafting' ? (
               <div className="tooltip-crafting-duration">
                 <ClockIcon />
@@ -106,8 +137,8 @@ const SlotTooltip: React.ForwardRefRenderFunction<
                         {count >= 1
                           ? `${count}x ${Items[item]?.label || item}`
                           : count === 0
-                          ? `${Items[item]?.label || item}`
-                          : count < 1 && `${count * 100}% ${Items[item]?.label || item}`}
+                            ? `${Items[item]?.label || item}`
+                            : count < 1 && `${count * 100}% ${Items[item]?.label || item}`}
                       </p>
                     </div>
                   );

@@ -1,4 +1,6 @@
 import React from 'react';
+import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const colorChannelMixer = (colorChannelA: number, colorChannelB: number, amountToMix: number) => {
   let channelA = colorChannelA * amountToMix;
@@ -15,36 +17,64 @@ const colorMixer = (rgbA: number[], rgbB: number[], amountToMix: number) => {
 
 const COLORS = {
   // Colors used - https://materialui.co/flatuicolors
-  primaryColor: [231, 76, 60], // Red (Pomegranate)
-  secondColor: [39, 174, 96], // Green (Nephritis)
-  accentColor: [211, 84, 0], // Orange (Oragne)
+  primaryColor: [255, 255, 255], // Red (Pomegranate)
+  secondColor: [255, 255, 255], // Green (Nephritis)
+  accentColor: [255, 0, 0], // Orange (Oragne)
 };
-
-const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percent, durability }) => {
+const COLORSS = {
+  // Colors used - https://materialui.co/flatuicolors
+  primaryColor: [38, 255, 0], // Red (Pomegranate)
+  secondColor: [247, 227, 0], // Green (Nephritis)
+  accentColor: [255, 0, 0], // Orange (Oragne)
+};
+const WeightBar: React.FC<{ percent: number; durability?: boolean, strokesize: number }> = ({ percent, durability, strokesize }) => {
   const color = React.useMemo(
     () =>
-      durability
-        ? percent < 50
-          ? colorMixer(COLORS.accentColor, COLORS.primaryColor, percent / 100)
-          : colorMixer(COLORS.secondColor, COLORS.accentColor, percent / 100)
-        : percent > 50
-        ? colorMixer(COLORS.primaryColor, COLORS.accentColor, percent / 100)
-        : colorMixer(COLORS.accentColor, COLORS.secondColor, percent / 50),
+      percent >= 50
+        ? colorMixer(COLORS.accentColor, COLORS.secondColor, percent / 100)
+        : colorMixer(COLORS.accentColor, COLORS.secondColor, percent / 100),
     [durability, percent]
   );
-
+  const colorr = React.useMemo(
+    () =>
+      percent < 50
+        ? colorMixer(COLORSS.secondColor, COLORSS.accentColor, percent / 100)
+        : colorMixer(COLORSS.primaryColor, COLORSS.accentColor, percent / 100),
+    [durability, percent]
+  );
   return (
-    <div className={durability ? 'durability-bar' : 'weight-bar'}>
-      <div
-        style={{
-          visibility: percent > 0 ? 'visible' : 'hidden',
-          height: '100%',
-          width: `${percent}%`,
-          backgroundColor: color,
-          transition: `background ${0.3}s ease, width ${0.3}s ease`,
-        }}
-      ></div>
-    </div>
+    <CircularProgressbarWithChildren
+      strokeWidth={strokesize}
+      styles={buildStyles({
+        rotation: 0.3,
+        strokeLinecap: 'round',
+        pathTransitionDuration: 0.5,
+        pathTransition: 'stroke-dashoffset 0.5s ease 0s',
+        // Colors
+        pathColor: durability ? colorr : color,
+        trailColor: 'grey',
+      })}
+      className={durability ? 'durability-bar' : 'weight-bar'}
+      value={percent}
+    >
+      <i
+        className={
+          percent > 70 ? durability ? '' : 'fa-light fa-scale-balanced fa-beat-fade' : durability ? '' : 'fa-regular fa-scale-balanced'
+        }
+        style={
+          durability
+            ? {
+
+            }
+            : {
+              fontSize: '0.7vw',
+              marginLeft: '0.25vw',
+              marginTop: '0.4vw',
+              animationDuration: '3s',
+            }
+        }
+      />
+    </CircularProgressbarWithChildren>
   );
 };
 export default WeightBar;
