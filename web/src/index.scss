@@ -323,6 +323,8 @@ button:active {
   text-align: center;
   border-bottom-left-radius: 0.25vh;
   border-bottom-right-radius: 0.25vh;
+  display: flex;
+  justify-content: space-between;
 }
 
 .inventory-slot-label-text {

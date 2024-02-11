@@ -208,6 +208,11 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
               <div className="inventory-slot-label-text">
                 {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
               </div>
+              {inventoryType !== 'shop' && (
+                <div className="inventory-slot-label-text">
+                  {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}
+                </div>
+              )}
             </div>
           </div>
         </div>
