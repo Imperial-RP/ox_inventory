@@ -327,6 +327,12 @@ button:active {
   justify-content: space-between;
 }
 
+.inventory-slot-label-box.counts {
+  position: absolute;
+  width: 100%;
+  bottom: 0.8vw;
+}
+
 .inventory-slot-label-text {
   text-transform: uppercase;
   white-space: nowrap;
@@ -350,11 +356,6 @@ button:active {
     margin-right: 0.25rem;
     transform: translateY(0.28rem);
   }
-}
-
-.inventory-slot-label-text.weight {
-  position: absolute;
-  bottom: 0.8vw;
 }
 
 .inventory-slot-number {

@@ -204,22 +204,22 @@ const InventorySlot: React.ForwardRefRenderFunction<HTMLDivElement, SlotProps> =
                 )}
               </>
             )}
-            <div className="inventory-slot-label-box">
+            <div className="inventory-slot-label-box counts">
               <div className="inventory-slot-label-text">
-                {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
-              </div>
-              {inventoryType !== 'shop' && (
-                <div className="inventory-slot-label-text">
-                  {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}
-                </div>
-              )}
-              <div className="inventory-slot-label-text weight">
                 <i className="fa-solid fa-weight-hanging"></i>
                 {item.weight > 0
                   ? `${(item.weight / 1000).toLocaleString('en-us', {
                     minimumFractionDigits: 2,
                   })} `
                   : '0 '}
+              </div>
+              <div className="inventory-slot-label-text">
+                {typeof item.count === 'undefined' ? '0x' : item.count + 'x'}
+              </div>
+            </div>
+            <div className="inventory-slot-label-box">
+              <div className="inventory-slot-label-text">
+                {item.metadata?.label ? item.metadata.label : Items[item.name]?.label || item.name}
               </div>
             </div>
           </div>
