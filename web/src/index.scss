@@ -456,7 +456,7 @@ button:active {
     font-weight: 400;
   }
   aside{
-    margin-left: 6.688vw;
+    margin-left: 0.156vw;
     font-size: 1.042vw;
     font-weight: 500;
   }
@@ -467,6 +467,7 @@ button:active {
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding-left: 0.156vw;
   svg {
     padding-right: 0.156vw;
   }

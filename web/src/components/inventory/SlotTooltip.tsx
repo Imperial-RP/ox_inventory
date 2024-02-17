@@ -56,15 +56,15 @@ const SlotTooltip: React.ForwardRefRenderFunction<
                   minimumFractionDigits: 2,
                 })} `
                 : '0 '}
+              {inventoryType === 'crafting' ? (
+                <div className="tooltip-crafting-duration">
+                  <ClockIcon />
+                  <p>{(item.duration !== undefined ? item.duration : 3000) / 1000}s</p>
+                </div>
+              ) : (
+                <p>{item.metadata?.type}</p>
+              )}
             </aside>
-            {inventoryType === 'crafting' ? (
-              <div className="tooltip-crafting-duration">
-                <ClockIcon />
-                <p>{(item.duration !== undefined ? item.duration : 3000) / 1000}s</p>
-              </div>
-            ) : (
-              <p>{item.metadata?.type}</p>
-            )}
           </div>
           <Divider />
           {description && (
